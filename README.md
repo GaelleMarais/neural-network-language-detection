@@ -11,5 +11,5 @@ $ gcc execution.c -lfann -lm -o execution.o
 ## Executions
 ```
 $ ./train.o
-$ ./execution.o
+$ ./execution.o examples/french.txt
 ```
