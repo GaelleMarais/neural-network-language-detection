@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "../include/fann.h"
+#include "./include/fann.h"
+#include "./include/floatfann.h"
 
 
 void calculate_frequencies(FILE *file, float* frequencies){
@@ -29,7 +30,15 @@ void calculate_frequencies(FILE *file, float* frequencies){
     for(int i = 0; i < 26; i++)
         printf("%c : %f\n", alphabet[i], frequencies[i]);
 
+}
 
+void print_result(float* output){
+    printf("Anglais -> %f\n", output[0]);
+    printf("Français -> %f\n", output[1]);
+    printf("Allemand -> %f\n", output[2]);
+    printf("Espagnol -> %f\n", output[3]);
+    printf("Italien -> %f\n", output[4]);
+    printf("Portuguais -> %f\n", output[5]);
 }
 
 int main(int argc, char *argv[]){
@@ -48,11 +57,12 @@ int main(int argc, char *argv[]){
     float frequencies[26];
     calculate_frequencies(file, frequencies);
 
-    // struct fann *ann = fann_create_from_file("language.net");
+    struct fann *ann = fann_create_from_file("language.net");
+    float *output = fann_run(ann, frequencies);
 
+    print_result(output);
 
-
-    // fann_destroy(ann);
+    fann_destroy(ann);
     fclose(file);
 
     return 0;

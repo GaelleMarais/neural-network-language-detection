@@ -1,4 +1,4 @@
-#include "../include/fann.h"
+#include "./include/fann.h"
 
 int main(){
     const unsigned int num_input = 2;
@@ -22,6 +22,5 @@ int main(){
 
     fann_destroy(ann);
 
-    return 0;
-    
+    return 0;    
 }
